@@ -5,6 +5,7 @@ const codeSchema = new mongoose.Schema(
     email_or_phone: {
       type: String,
       required: true,
+      unique: true,
     },
     code: {
       type: Number,
@@ -14,6 +15,10 @@ const codeSchema = new mongoose.Schema(
     expired_date: {
       type: Date,
       default: Number(Date.now()) + Number(process.env.EXPIRED_TIME_CODE),
+    },
+    verified: {
+      type: Boolean,
+      default: false,
     },
   },
   {
