@@ -21,12 +21,10 @@ const userSchema = new mongoose.Schema(
     },
     phone: {
       type: String,
-      required: true,
       unique: true,
     },
     email: {
       type: String,
-      required: true,
       unique: true,
       validate: [validator.isEmail, "Emailni to'g'ri kirit"],
       lowerCae: true,

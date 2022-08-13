@@ -5,17 +5,17 @@ const jwt = require("jsonwebtoken");
 const { catchErrorAsync } = require("./../utilities/catchError");
 const Email = require("./../utilities/mail");
 
-const saveCookie = (token, res) => {
-  res.cookies("code", token, {
-    maxAge: 21600,
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "DEVEOLPMENT" ? false : true,
+const createToken = (id) => {
+  return jwt.sign({ id }, process.env.JWT_SECRET, {
+    expiresIn: 2160000,
   });
 };
 
-const createToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, {
-    expiresIn: 600,
+const saveCodeCookie = (token, res, req) => {
+  res.cookie("code", token, {
+    maxAge: 60 * 10 * 1000,
+    httpOnly: true,
+    secure: req.protocol === "https" ? true : false,
   });
 };
 
@@ -48,7 +48,7 @@ const sign_up = catchErrorAsync(async (req, res, next) => {
       });
       token = createToken(codeSave._id);
     }
-    saveCookie(token, req, res);
+    saveCodeCookie(token, res, req);
     res.status(200).json({
       status: "succes",
       message: "Jo'natildi",
@@ -58,17 +58,16 @@ const sign_up = catchErrorAsync(async (req, res, next) => {
 
 const verify_code = catchErrorAsync(async (req, res, next) => {
   const getCodeEmail = await jwt.verify(
-    req.cookie.code,
+    req.cookies.code,
     process.env.JWT_SECRET
   );
 
   const user = await Code.findById(getCodeEmail.id);
 
-  console.log(getCodeEmail);
   if (!user) {
     return next(new AppError("Bunday user mavjud emas"));
   }
-  if (!(user.code === req.body.code && user.expired_date > Date.now())) {
+  if (!(user.code == req.body.code && user.expired_date > Date.now())) {
     return next(
       new AppError(
         "Usr code xato yoki amal qilish vaqti tugagan qaytadan signup qil"
@@ -92,7 +91,8 @@ const verify_code = catchErrorAsync(async (req, res, next) => {
 
 const register = catchErrorAsync(async (req, res, next) => {
   const code = await jwt.verify(req.cookies.code, process.env.JWT_SECRET);
-  const userEmail = Code.findById(code.id);
+  const userEmail = await Code.findById(code.id);
+  console.log(userEmail);
   if (!userEmail.verified) {
     return next(new AppError("SIz kodni tasdiqlamagansiz", 404));
   }
@@ -105,7 +105,7 @@ const register = catchErrorAsync(async (req, res, next) => {
     phone: check ? "" : userEmail.email_or_phone,
     email: check ? userEmail.email_or_phone : "",
     password: req.body.password,
-    passwordConfirm: req.body.passwordConfirm,
+    password_confirm: req.body.password_confirm,
     phone_active: check ? false : true,
     email_active: check ? true : false,
   });
