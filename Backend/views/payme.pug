@@ -1,0 +1,26 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Document
+    body 
+        form(method='POST', action='https://test.paycom.uz')
+  
+            input(type='hidden', name='merchant', value='{Merchant ID}')
+            input(type='hidden', name='amount', value='{сумма чека в ТИИНАХ}')
+            input(type='hidden', name='account[{field_name}]', value='{field_value}')
+
+            input(type='hidden', name='lang', value='ru')
+ 
+            input(type='hidden', name='callback', value='{url возврата после платежа}')
+ 
+            input(type='hidden', name='callback_timeout', value='{miliseconds}')
+ 
+            input(type='hidden', name='description', value='{Описание платежа}')
+ 
+            input(type='hidden', name='detail', value='{JSON объект детализации в BASE64}')
+            button(type='submit')
+             | &Ocy;&pcy;&lcy;&acy;&tcy;&icy;&tcy;&softcy; &scy; &pcy;&ocy;&mcy;&ocy;&shchcy;&softcy;&yucy; 
+              b Payme
