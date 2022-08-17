@@ -1,0 +1,25 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  margin-top: 150px;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  align-items: center;
+  height: 20vh;
+}
+
+.sender {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 5px;
+}
+.verifier {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 5px;
+}

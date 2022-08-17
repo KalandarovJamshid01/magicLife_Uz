@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="sender">
+        <input type="text" id="phoneNumber" placeholder="+998996887953" />
+        <div id="recaptcha-container"></div>
+        <input type="button" value="Send" id="send" />
+      </div>
+      <div class="verifier">
+        <input type="text" placeholder="VerifyCode" name="" id="verify" />
+        <input type="button" value="verify code"  id="verifying"/>
+        <div class="p-conf">Number verified</div>
+        <div class="n-conf">OTP error</div>
+      </div>
+    </div>
+    <script src="./assets/js/bundle.js"></script>
+  </body>
+</html>

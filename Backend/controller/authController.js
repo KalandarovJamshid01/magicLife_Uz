@@ -97,6 +97,7 @@ const register = catchErrorAsync(async (req, res, next) => {
     return next(new AppError("SIz kodni tasdiqlamagansiz", 404));
   }
   const check = userEmail.email_or_phone.includes("@");
+
   const user = await User.create({
     account_id: req.body.account_id,
     full_name: req.body.full_name,
