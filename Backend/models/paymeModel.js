@@ -3,7 +3,7 @@ const paymeSchema = new mongoose.Schema({
   payme_id: {
     type: String,
     // required: true,
-    unique: true,
+    // unique: true,
   },
   time: {
     type: String,
@@ -15,8 +15,7 @@ const paymeSchema = new mongoose.Schema({
   },
 
   account: {
-    type: mongoose.Schema.ObjectId,
-    ref: "user",
+    type: Number,
   },
   create_time: {
     type: String,
@@ -29,7 +28,7 @@ const paymeSchema = new mongoose.Schema({
     type: String,
     dafault: 0,
   },
-  trnasaction_id: {
+  order_id: {
     type: Number,
   },
   state: {
