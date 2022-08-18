@@ -14,6 +14,7 @@ const save_data_kassa = async (req, res, next) => {
     const merchant_id = process.env.PAYME_ID;
     const data = await Payme.create({
       amount: amount,
+      account: "62f7d36000c721cac80309bd",
     });
     res.status(200).render("payme", {
       data,

@@ -1,10 +1,16 @@
 const { catchErrorAsync } = require("./../utilities/catchError");
 const Payme = require("./../models/paymeModel");
 
-const CheckPerformTransaction = (req, res, next) => {
-
-    
-};
+const CheckPerformTransaction = catchErrorAsync((req, res, next) => {
+  const id = req.body.params.account.id;
+  if (!id) {
+    res.status(200).json({
+      result: {
+        allow: -31050,
+      },
+    });
+  }
+});
 
 const CreateTransaction = catchErrorAsync(async (req, res, next) => {});
 const PerformTransaction = catchErrorAsync(async (req, res, next) => {});

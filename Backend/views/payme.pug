@@ -7,18 +7,8 @@ html(lang="en")
         title Document
     body 
         form(method='POST', action='https://test.paycom.uz')
-  
             input(type='hidden', name='merchant', value=`${merchant_id}`)
             input(type='hidden', name='amount', value=`${data.amount*100}`)
             input(type='hidden', name=`account[id]`, value=`${data.account}`)
-
-            input(type='hidden', name='lang', value='ru')
- 
-            input(type='hidden', name='callback', value='{url возврата после платежа}')
- 
-            input(type='hidden', name='callback_timeout', value='{miliseconds}')
- 
-            input(type='hidden', name='description', value='{Описание платежа}')
- 
-            input(type='hidden', name='detail', value='{JSON объект детализации в BASE64}')
+            input(type='hidden', name='lang', value='eng')
             button(type='submit') PayMe

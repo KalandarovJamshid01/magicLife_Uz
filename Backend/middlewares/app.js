@@ -3,6 +3,7 @@ const app = express();
 const cookies = require("cookie-parser");
 const userRoute = require("./../routes/userRoute");
 const errorController = require("./../controller/errorController");
+const AppError = require("./../utilities/AppError");
 const paymeRoute = require("./../routes/paymentRoute");
 const viewRoute = require("./../routes/viewRoute");
 app.use(express.json());
